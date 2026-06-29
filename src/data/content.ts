@@ -5,6 +5,8 @@ export const banner = {
   linkText: "",
 };
 
+export const formspreeEndpoint = "FORMSPREE_ENDPOINT_PLACEHOLDER";
+
 export const pricing = {
   unlimitedMonthly: 229,
   eightClassPack: 185,

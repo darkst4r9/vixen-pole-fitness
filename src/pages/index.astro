@@ -1,12 +1,177 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { banner } from "../data/content.ts";
+
+const valueProps = [
+  {
+    heading: "Diverse Instructors",
+    body: "Our team brings a range of styles, backgrounds, and specialties.",
+  },
+  {
+    heading: "All Levels Welcome",
+    body: "Never poled before? Perfect. We have classes for absolute beginners through advanced.",
+  },
+  {
+    heading: "Real Community",
+    body: "This isn't just a studio. Students become friends. Progress is celebrated.",
+  },
+];
+
+const featuredClasses = [
+  {
+    name: "Beginner Pole Fitness",
+    description: "Learn foundational tricks and spins in a supportive setting.",
+  },
+  {
+    name: "Heels Choreography",
+    description: "Dance, flow, and perform in heels. All levels welcome.",
+  },
+  {
+    name: "Pole Prep",
+    description: "Conditioning and strength training to support your pole journey.",
+  },
+];
+
+const instructors = [
+  {
+    initials: "L",
+    name: "Lexi",
+    role: "Co-Owner & Lead Instructor",
+    bio: "6 years of teaching, all levels and heels.",
+  },
+  {
+    initials: "S",
+    name: "Sarah",
+    role: "Co-Owner & Instructor",
+    bio: "Dance background, bringing artistry to every class.",
+  },
+];
 ---
 
 <BaseLayout
-  title="Vixen Pole Fitness | Pole Fitness for All Bodies"
-  description="A welcoming, non-judgmental studio for all levels. Book a class in Murrieta, CA."
+  title="Vixen Pole Fitness | Pole Fitness for All Bodies in Murrieta, CA"
+  description="A welcoming, non-judgmental pole fitness studio in Murrieta, CA. All levels welcome. Book a class today."
 >
-  <main class="min-h-screen flex items-center justify-center bg-brand-gray">
-    <h1 class="text-4xl font-bold text-brand-black">Coming Soon</h1>
-  </main>
+  <!-- Banner — only renders when banner.active is true -->
+  {banner.active && (
+    <div class="w-full bg-brand-mint text-brand-black text-center py-3 px-4 text-sm font-medium">
+      {banner.link ? (
+        <a href={banner.link} class="underline hover:no-underline">
+          {banner.text}{banner.linkText ? ` — ${banner.linkText}` : ""}
+        </a>
+      ) : (
+        <span>{banner.text}</span>
+      )}
+    </div>
+  )}
+
+  <!-- Hero -->
+  <section class="bg-brand-mint">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+      <div class="max-w-2xl">
+        <p class="text-brand-black text-sm font-semibold uppercase tracking-widest mb-4">
+          Murrieta, CA
+        </p>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-brand-black leading-tight mb-6">
+          Pole Fitness, for All Bodies
+        </h1>
+        <p class="text-gray-700 text-lg leading-relaxed mb-10">
+          Experience a welcoming, non-judgmental environment to reconnect with your body through movement.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a
+            href="/classes"
+            class="inline-flex items-center px-6 py-3 bg-brand-black text-brand-white text-sm font-semibold rounded-lg hover:bg-gray-800 transition-colors"
+          >
+            Book a Class
+          </a>
+          <a
+            href="/classes"
+            class="inline-flex items-center px-6 py-3 border-2 border-brand-black text-brand-black text-sm font-semibold rounded-lg hover:bg-brand-black hover:text-brand-white transition-colors"
+          >
+            See Our Classes
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Value props -->
+  <section class="bg-brand-gray">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {valueProps.map((prop) => (
+          <div class="bg-brand-white rounded-xl border border-gray-200 shadow-sm p-8">
+            <h3 class="font-bold text-brand-black text-xl mb-3">{prop.heading}</h3>
+            <p class="text-gray-600 leading-relaxed">{prop.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured classes teaser -->
+  <section class="bg-brand-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
+      <h2 class="text-3xl font-bold text-brand-black mb-10">Featured Classes</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {featuredClasses.map((cls) => (
+          <a
+            href="/classes"
+            class="group bg-brand-white rounded-xl border border-gray-200 shadow-sm p-8 hover:border-brand-mint-dark hover:shadow-md transition-all"
+          >
+            <h3 class="font-bold text-brand-black text-xl mb-3 group-hover:text-brand-black">
+              {cls.name}
+            </h3>
+            <p class="text-gray-600 leading-relaxed mb-4">{cls.description}</p>
+            <span class="text-sm font-semibold text-brand-black underline underline-offset-2">
+              Learn more
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Instructor teaser -->
+  <section class="bg-brand-gray">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
+      <h2 class="text-3xl font-bold text-brand-black mb-10">Meet Your Instructors</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+        {instructors.map((instructor) => (
+          <div class="bg-brand-white rounded-xl border border-gray-200 shadow-sm p-8 flex gap-6 items-start">
+            <div class="shrink-0 w-16 h-16 rounded-xl bg-brand-mint text-brand-black flex items-center justify-center text-2xl font-bold">
+              {instructor.initials}
+            </div>
+            <div>
+              <h3 class="font-bold text-brand-black text-xl mb-1">{instructor.name}</h3>
+              <p class="text-sm text-gray-500 font-medium mb-2">{instructor.role}</p>
+              <p class="text-gray-600 leading-relaxed">{instructor.bio}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div>
+        <a href="/instructors" class="text-sm font-semibold text-brand-black underline underline-offset-2 hover:no-underline">
+          Meet the Full Team →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Booking CTA strip -->
+  <section class="bg-brand-black">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20 text-center">
+      <h2 class="text-3xl font-bold text-brand-white mb-4">Ready to Start?</h2>
+      <p class="text-gray-400 text-lg leading-relaxed mb-8 max-w-xl mx-auto">
+        Your first class is the hardest part. We make the rest easy.
+      </p>
+      <a
+        href="/classes"
+        class="inline-flex items-center px-8 py-4 bg-brand-mint text-brand-black text-sm font-semibold rounded-lg hover:bg-brand-mint-dark transition-colors"
+      >
+        Book a Class
+      </a>
+    </div>
+  </section>
 </BaseLayout>

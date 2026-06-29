@@ -17,3 +17,11 @@
 html {
   font-family: var(--font-sans);
 }
+
+/* Mobile hamburger icon swap — :has() reaches the label even though it precedes the checkbox in DOM order */
+nav:has(#mobile-menu-toggle:checked) .menu-open-icon {
+  display: none;
+}
+nav:has(#mobile-menu-toggle:checked) .menu-close-icon {
+  display: block;
+}

@@ -1,7 +1,7 @@
 # Project Status
 
 ## Current Phase
-Phase 1: Project Setup and Design System
+Phase 2: Core Static Pages
 
 ## Status
 IN_PROGRESS
@@ -59,6 +59,47 @@ Astro added Tailwind v4 (not v3). Tailwind v4 uses CSS-first configuration; ther
 
 ### Recommended next action
 qa-test-engineer and ux-reviewer to verify Phase 1 acceptance criteria.
+
+## Handoff Note — frontend-engineer — 2026-06-29 (Phase 2)
+
+### What changed
+
+New files created:
+- .nvmrc — pins Node 22 so local dev does not require manual nvm use
+- src/pages/about.astro — About page with hero, studio story, co-owner cards, values, and location block
+- src/pages/contact.astro — Contact page with Formspree form and contact info/map column
+
+Modified files:
+- src/pages/index.astro — replaced "Coming Soon" placeholder with full Home page: banner, hero, value props, featured classes, instructor teaser, booking CTA strip
+- src/data/content.ts — added formspreeEndpoint export (value: "FORMSPREE_ENDPOINT_PLACEHOLDER")
+- src/styles/global.css — added :has() CSS rule to fix mobile hamburger open/close icon swap
+
+### Phase 1 quirks addressed
+
+- .nvmrc added with "22"
+- Hamburger icon toggle fixed via `nav:has(#mobile-menu-toggle:checked)` CSS in global.css, using the :has() pseudo-class since the label precedes the checkbox in DOM order (peer-based approach cannot reach backward siblings)
+
+### Build result
+
+npm run build completed with zero errors. 3 pages built in ~365ms. Output: dist/index.html, dist/about/index.html, dist/contact/index.html.
+
+### Acceptance criteria status
+
+1. Home hero: headline, subhead, and two CTAs on a brand-mint background. Renders cleanly on mobile and desktop.
+2. Banner: conditional render on Home page. Currently banner.active is false so nothing renders; flipping to true will show the strip.
+3. About page: co-owner story, studio values, and location block built.
+4. Contact form: posts to formspreeEndpoint via standard HTML POST. Tony must create a Formspree account at formspree.io, create a form targeting VXN.polefitness@gmail.com, and replace "FORMSPREE_ENDPOINT_PLACEHOLDER" in src/data/content.ts with the real endpoint URL (format: https://formspree.io/f/xxxxxxxx).
+5. All three pages: correct title and meta description set via BaseLayout props.
+
+### Still open
+
+- Formspree endpoint: placeholder value in content.ts. Tony must wire the real URL.
+- Favicon: still logo.png. Can become a proper .ico in Phase 4.
+- No GA4 (Phase 4).
+- Mobile nav link click does not close the menu (known CSS-only limitation from Phase 1). Can be fixed with a small inline script in Phase 3 or 5 if flagged by ux-reviewer.
+
+### Recommended next action
+qa-test-engineer and ux-reviewer to verify Phase 2 acceptance criteria.
 
 ## Open Questions for Me
 None.

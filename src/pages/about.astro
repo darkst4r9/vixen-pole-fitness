@@ -1,0 +1,154 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const owners = [
+  {
+    initials: "L",
+    name: "Lexi",
+    role: "Co-Owner & Lead Instructor",
+    bio: "6 years of teaching experience across all levels and heels choreography.",
+  },
+  {
+    initials: "S",
+    name: "Sarah",
+    role: "Co-Owner & Instructor",
+    bio: "Dance background and 2 years of teaching, bringing artistry and flow to every class.",
+  },
+];
+
+const values = [
+  {
+    heading: "Inclusion",
+    body: "No judgment. No prerequisites. Just movement.",
+  },
+  {
+    heading: "Community",
+    body: "Our students become each other's biggest fans.",
+  },
+  {
+    heading: "Empowerment",
+    body: "We're here to help you unlock confidence you didn't know you had.",
+  },
+];
+---
+
+<BaseLayout
+  title="About | Vixen Pole Fitness"
+  description="Learn about Vixen Pole Fitness, our co-owners Lexi and Sarah, and our mission to make pole fitness welcoming for all bodies and levels."
+>
+  <!-- Hero -->
+  <section class="bg-brand-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
+      <div class="max-w-2xl">
+        <h1 class="text-4xl sm:text-5xl font-bold text-brand-black mb-6">
+          About Vixen Pole Fitness
+        </h1>
+        <p class="text-gray-600 text-xl leading-relaxed">
+          A studio built on inclusion, empowerment, and the belief that pole is for everybody.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Studio story -->
+  <section class="bg-brand-gray">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div>
+          <h2 class="text-3xl font-bold text-brand-black mb-6">Our Story</h2>
+          <p class="text-gray-600 leading-relaxed mb-4">
+            Vixen Pole Fitness was founded by Lexi and Sarah with a simple mission: create a space where everyone feels welcome, regardless of fitness level, body type, or experience. What started as a shared love of movement has grown into a community of students who support and celebrate each other every class.
+          </p>
+          <p class="text-gray-600 leading-relaxed">
+            We believe in progression over perfection. Whether you land a trick for the first time or nail a routine you've been working on for months, every win counts here.
+          </p>
+        </div>
+        <div class="w-full h-64 lg:h-80 bg-brand-mint rounded-xl flex items-center justify-center">
+          <span class="text-gray-500 text-sm font-medium">Studio photo coming soon</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Meet the co-owners -->
+  <section class="bg-brand-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
+      <h2 class="text-3xl font-bold text-brand-black mb-10">Meet the Co-Owners</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {owners.map((owner) => (
+          <div class="bg-brand-white rounded-xl border border-gray-200 shadow-sm p-8 flex gap-6 items-start">
+            <div class="shrink-0 w-16 h-16 rounded-full bg-brand-mint text-brand-black flex items-center justify-center text-2xl font-bold">
+              {owner.initials}
+            </div>
+            <div>
+              <h3 class="font-bold text-brand-black text-xl mb-1">{owner.name}</h3>
+              <p class="text-sm text-gray-500 font-medium mb-3">{owner.role}</p>
+              <p class="text-gray-600 leading-relaxed">{owner.bio}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Studio values -->
+  <section class="bg-brand-gray">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
+      <h2 class="text-3xl font-bold text-brand-black mb-10">What We Stand For</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {values.map((value) => (
+          <div class="bg-brand-white rounded-xl border border-gray-200 shadow-sm p-8">
+            <h3 class="font-bold text-brand-black text-xl mb-3">{value.heading}</h3>
+            <p class="text-gray-600 leading-relaxed">{value.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Location and contact -->
+  <section class="bg-brand-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
+      <h2 class="text-3xl font-bold text-brand-black mb-10">Find Us</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div class="space-y-6">
+          <div>
+            <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-2">Address</h3>
+            <address class="not-italic text-gray-600 leading-relaxed">
+              24831 Jefferson Ave Ste. 104<br />
+              Murrieta, CA 92562
+            </address>
+          </div>
+          <div>
+            <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-2">Email</h3>
+            <a
+              href="mailto:VXN.polefitness@gmail.com"
+              class="text-brand-black font-medium hover:underline"
+            >
+              VXN.polefitness@gmail.com
+            </a>
+          </div>
+          <div>
+            <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-2">Instagram</h3>
+            <a
+              href="https://instagram.com/vixen_pole_fitness_"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-brand-black font-medium hover:underline"
+            >
+              @vixen_pole_fitness_
+            </a>
+          </div>
+        </div>
+        <div class="flex flex-col gap-4">
+          <a
+            href="/contact"
+            class="inline-flex items-center px-6 py-3 bg-brand-black text-brand-white text-sm font-semibold rounded-lg hover:bg-gray-800 transition-colors self-start"
+          >
+            Send Us a Message
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
