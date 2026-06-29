@@ -127,10 +127,8 @@ Webflow hosts the published site on its CDN. No separate Vercel deployment.
 | Webflow MCP (`claude.ai Webflow`) | User (already connected) | Build pages, manage CMS collections, push design changes from Claude Code sessions |
 | GitHub MCP (`github`) | User (already connected) | Track build phases as Issues, manage Project board |
 
-**GitHub Project board creation command (run once, after repo is created):**
-```
-gh project create --title "Vixen Pole Fitness Rework" --owner "@me"
-```
+**GitHub repo:** https://github.com/darkst4r9/vixen-pole-fitness  
+**GitHub Project board:** https://github.com/users/darkst4r9/projects/4
 
 ---
 
