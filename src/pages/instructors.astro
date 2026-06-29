@@ -123,6 +123,8 @@ const team = instructors.filter((i) => !i.isOwner);
     <dialog
       id={`modal-${instructor.name.toLowerCase()}`}
       class="instructor-modal"
+      aria-modal="true"
+      aria-label={`${instructor.name} — bio`}
     >
       <div class="bg-gray-950 border border-gray-800 rounded-xl overflow-hidden">
         <!-- Photo + close button -->

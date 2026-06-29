@@ -5,8 +5,6 @@ export const banner = {
   linkText: "",
 };
 
-export const formspreeEndpoint = "FORMSPREE_ENDPOINT_PLACEHOLDER";
-
 // Public GoTeamUp booking page — used as the Book Now link target.
 export const goteamupUrl = "https://goteamup.com/p/6182512-vixen-pole-fitness/";
 
