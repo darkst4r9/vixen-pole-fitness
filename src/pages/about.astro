@@ -1,20 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { instructors } from "../data/instructors.ts";
 
-const owners = [
-  {
-    initials: "L",
-    name: "Lexi",
-    role: "Co-Owner & Lead Instructor",
-    bio: "6 years of teaching experience across all levels and heels choreography.",
-  },
-  {
-    initials: "S",
-    name: "Sarah",
-    role: "Co-Owner & Instructor",
-    bio: "Dance background and 2 years of teaching, bringing artistry and flow to every class.",
-  },
-];
+const owners = instructors.filter((i) => i.isOwner);
 
 const values = [
   {
@@ -58,7 +46,7 @@ const values = [
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
         <div>
-          <h2 class="text-3xl font-bold text-brand-black mb-6">Our Story</h2>
+          <h2 class="font-display font-bold text-brand-black text-3xl lg:text-4xl mb-6">Our Story</h2>
           <p class="text-gray-600 leading-relaxed mb-4">
             Vixen Pole Fitness was founded by Lexi and Sarah with a simple mission: create a space where everyone feels welcome, regardless of fitness level, body type, or experience. What started as a shared love of movement has grown into a community of students who support and celebrate each other every class.
           </p>
@@ -73,22 +61,34 @@ const values = [
     </div>
   </section>
 
-  <!-- Meet the co-owners -->
-  <section class="bg-brand-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
-      <h2 class="text-3xl font-bold text-brand-black mb-10">Meet the Co-Owners</h2>
+  <!-- Meet the founders — photo cards linking to /instructors -->
+  <section class="bg-brand-black py-20 lg:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-end justify-between mb-12 flex-wrap gap-4">
+        <h2 class="font-display font-bold text-brand-white text-4xl lg:text-5xl leading-none">The Founders</h2>
+        <a href="/instructors" class="text-sm font-semibold text-gray-400 hover:text-brand-mint transition-colors">
+          Meet the Full Team →
+        </a>
+      </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         {owners.map((owner) => (
-          <div class="bg-brand-white rounded-xl border border-gray-200 shadow-sm p-8 flex gap-6 items-start">
-            <div class="shrink-0 w-16 h-16 rounded-full bg-brand-mint text-brand-black flex items-center justify-center text-2xl font-bold">
-              {owner.initials}
+          <a
+            href="/instructors"
+            class="group relative rounded-xl overflow-hidden aspect-[3/4] md:aspect-[4/3] flex items-end"
+          >
+            <img
+              src={owner.photo}
+              alt={owner.name}
+              class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              style={`object-position: ${owner.photoPosition}`}
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent"></div>
+            <div class="relative z-10 p-8">
+              <div class="h-px bg-brand-mint w-8 mb-4 group-hover:w-16 transition-all duration-300"></div>
+              <h3 class="font-display font-bold text-brand-white text-2xl mb-1">{owner.name}</h3>
+              <p class="text-brand-mint text-xs font-bold uppercase tracking-wider">{owner.role}</p>
             </div>
-            <div>
-              <h3 class="font-bold text-brand-black text-xl mb-1">{owner.name}</h3>
-              <p class="text-sm text-gray-500 font-medium mb-3">{owner.role}</p>
-              <p class="text-gray-600 leading-relaxed">{owner.bio}</p>
-            </div>
-          </div>
+          </a>
         ))}
       </div>
     </div>
@@ -97,7 +97,7 @@ const values = [
   <!-- Studio values -->
   <section class="bg-brand-gray">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
-      <h2 class="text-3xl font-bold text-brand-black mb-10">What We Stand For</h2>
+      <h2 class="font-display font-bold text-brand-black text-3xl lg:text-4xl mb-10">What We Stand For</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         {values.map((value) => (
           <div class="bg-brand-white rounded-xl border border-gray-200 shadow-sm p-8">
@@ -112,7 +112,7 @@ const values = [
   <!-- Location and contact -->
   <section class="bg-brand-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
-      <h2 class="text-3xl font-bold text-brand-black mb-10">Find Us</h2>
+      <h2 class="font-display font-bold text-brand-black text-3xl lg:text-4xl mb-10">Find Us</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
         <div class="space-y-6">
           <div>
@@ -124,10 +124,7 @@ const values = [
           </div>
           <div>
             <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-2">Email</h3>
-            <a
-              href="mailto:VXN.polefitness@gmail.com"
-              class="text-brand-black font-medium hover:underline"
-            >
+            <a href="mailto:VXN.polefitness@gmail.com" class="text-brand-black font-medium hover:underline">
               VXN.polefitness@gmail.com
             </a>
           </div>
@@ -148,7 +145,7 @@ const values = [
             href="/contact"
             class="inline-flex items-center px-6 py-3 bg-brand-black text-brand-white text-sm font-semibold rounded-lg hover:bg-gray-800 transition-colors self-start"
           >
-            Send Us a Message
+            Get in Touch
           </a>
         </div>
       </div>
