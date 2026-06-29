@@ -11,15 +11,6 @@
   --font-display: "Playfair Display", Georgia, serif;
 }
 
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
-.animate-marquee {
-  animation: marquee 30s linear infinite;
-}
-
 *, *::before, *::after {
   box-sizing: border-box;
 }
