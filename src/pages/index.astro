@@ -111,12 +111,12 @@ const instructors = allInstructors.filter((i) => i.isOwner);
     </div>
   </section>
 
-  <!-- Classes — dark section with numbered cards -->
-  <section class="bg-brand-black py-20 lg:py-28">
+  <!-- Classes — light section with numbered cards -->
+  <section class="bg-brand-gray py-20 lg:py-28">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-end justify-between mb-12 flex-wrap gap-4">
-        <h2 class="font-display font-bold text-brand-white text-5xl lg:text-6xl leading-none">Classes</h2>
-        <a href="/classes" class="text-sm font-semibold text-gray-400 hover:text-brand-mint transition-colors">
+        <h2 class="font-display font-bold text-brand-black text-5xl lg:text-6xl leading-none">Classes</h2>
+        <a href="/classes" class="text-sm font-semibold text-gray-500 hover:text-brand-black transition-colors">
           View All →
         </a>
       </div>
@@ -124,13 +124,13 @@ const instructors = allInstructors.filter((i) => i.isOwner);
         {featuredClasses.map((cls, i) => (
           <a
             href="/classes"
-            class="group block border border-gray-800 rounded-xl p-8 hover:border-brand-mint transition-colors duration-200"
+            class="group block bg-brand-white border border-gray-200 rounded-xl p-8 hover:border-brand-mint transition-colors duration-200 shadow-sm"
           >
-            <p class="text-brand-mint font-bold text-xl font-display mb-3">0{i + 1}</p>
+            <p class="text-brand-mint-dark font-bold text-xl font-display mb-3">0{i + 1}</p>
             <div class="h-px bg-brand-mint w-8 mb-6 group-hover:w-16 transition-all duration-300"></div>
-            <h3 class="font-bold text-brand-white text-xl mb-3">{cls.name}</h3>
-            <p class="text-gray-400 leading-relaxed text-sm mb-8">{cls.description}</p>
-            <span class="text-brand-mint text-sm font-semibold">
+            <h3 class="font-bold text-brand-black text-xl mb-3">{cls.name}</h3>
+            <p class="text-gray-500 leading-relaxed text-sm mb-8">{cls.description}</p>
+            <span class="text-brand-mint-dark text-sm font-semibold">
               Learn more →
             </span>
           </a>
@@ -173,13 +173,9 @@ const instructors = allInstructors.filter((i) => i.isOwner);
     </div>
   </section>
 
-  <!-- CTA strip — mint bg with texture -->
-  <section class="relative bg-brand-mint overflow-hidden">
-    <div
-      class="absolute inset-0 opacity-20"
-      style="background-image: url('/images/brand/bg-texture.jpg'); background-size: cover; background-position: center;"
-    ></div>
-    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+  <!-- CTA strip — mint bg -->
+  <section class="bg-brand-mint">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
       <h2 class="font-display font-bold text-brand-black leading-tight mb-6 text-5xl lg:text-7xl">
         Your first class<br>is the hardest<br>part.
       </h2>
