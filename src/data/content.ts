@@ -7,9 +7,13 @@ export const banner = {
 
 export const formspreeEndpoint = "FORMSPREE_ENDPOINT_PLACEHOLDER";
 
-// Replace with your TeamUp booking widget URL.
-// In TeamUp: Booking Pages > your page > Embed > copy the iframe src URL.
-export const teamupEmbedUrl = "TEAMUP_EMBED_URL_PLACEHOLDER";
+// Public GoTeamUp booking page — used as the Book Now link target.
+export const goteamupUrl = "https://goteamup.com/p/6182512-vixen-pole-fitness/";
+
+// Full JS widget embed code from GoTeamUp dashboard.
+// In GoTeamUp: Customer Experience > Customer Site > View Embed Instructions > Copy Code.
+// Paste the entire <script> block here as a string when ready, or drop it directly into classes.astro.
+export const goteamupWidgetCode = "";
 
 export const pricing = {
   unlimitedMonthly: 229,
