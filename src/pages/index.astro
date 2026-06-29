@@ -41,9 +41,15 @@ const instructors = allInstructors.filter((i) => i.isOwner);
 
   <!-- Hero -->
   <section class="relative bg-brand-black overflow-hidden min-h-[88vh] flex items-end">
-    <!-- Decorative large initial background letterform -->
-    <div class="absolute right-0 top-0 bottom-0 flex items-center pr-8 select-none pointer-events-none overflow-hidden">
-      <span class="font-display font-bold text-[32vw] leading-none text-white opacity-[0.03]">V</span>
+    <!-- Background photo anchored right, fading left -->
+    <div class="absolute inset-0">
+      <img
+        src="/images/gallery/gallery-6.jpeg"
+        alt=""
+        aria-hidden="true"
+        class="w-full h-full object-cover object-right"
+      />
+      <div class="absolute inset-0" style="background: linear-gradient(to right, #1A1A1A 35%, rgba(26,26,26,0.75) 60%, rgba(26,26,26,0.2) 100%)"></div>
     </div>
     <!-- Content -->
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-24 lg:pt-28 lg:pb-32 w-full">
