@@ -1,0 +1,148 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { classTypes } from "../data/classes.ts";
+import { teamupEmbedUrl } from "../data/content.ts";
+
+const levelColors: Record<string, string> = {
+  "Beginner": "bg-brand-mint text-brand-black",
+  "Intermediate": "bg-gray-700 text-brand-white",
+  "All Levels": "bg-gray-800 text-gray-300",
+};
+---
+
+<BaseLayout
+  title="Classes & Schedule | Vixen Pole Fitness"
+  description="Explore pole fitness classes at Vixen Pole Fitness in Murrieta, CA. Beginner to advanced — heels, choreo, pole prep, stretch, and more. Book online via TeamUp."
+>
+  <!-- Hero -->
+  <section class="relative bg-brand-black overflow-hidden">
+    <div
+      class="absolute inset-0 opacity-[0.12]"
+      style="background-image: url('/images/brand/bg-texture.jpg'); background-size: cover; background-position: center;"
+    ></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+      <p class="text-brand-mint text-xs font-semibold uppercase tracking-[0.2em] mb-6">Murrieta, CA</p>
+      <h1 class="font-display font-bold text-brand-white leading-none mb-6 text-[clamp(3rem,8vw,6rem)]">
+        Classes &<br>Schedule
+      </h1>
+      <p class="text-gray-400 text-lg leading-relaxed max-w-xl">
+        From your very first spin to performance-level choreography — find the class that fits where you are right now.
+      </p>
+    </div>
+  </section>
+
+  <!-- Class type cards -->
+  <section class="bg-brand-black py-20 lg:py-28 border-t border-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-display font-bold text-brand-white text-4xl lg:text-5xl leading-none mb-12">What We Offer</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {classTypes.map((cls, i) => (
+          <div class="group border border-gray-800 rounded-xl p-8 hover:border-brand-mint transition-colors duration-200">
+            <div class="flex items-start justify-between mb-6">
+              <p class="text-brand-mint font-bold text-xl font-display">0{i + 1}</p>
+              <span class={`text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full ${levelColors[cls.level] ?? "bg-gray-800 text-gray-300"}`}>
+                {cls.level}
+              </span>
+            </div>
+            <div class="h-px bg-brand-mint w-8 mb-6 group-hover:w-16 transition-all duration-300"></div>
+            <h3 class="font-bold text-brand-white text-xl mb-3">{cls.name}</h3>
+            <p class="text-gray-400 leading-relaxed text-sm mb-6">{cls.description}</p>
+            <div class="border-t border-gray-800 pt-5">
+              <p class="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-2">What to expect</p>
+              <p class="text-gray-400 text-sm leading-relaxed">{cls.whatToExpect}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- What to bring -->
+  <section class="bg-brand-white py-16 lg:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div>
+          <h2 class="font-display font-bold text-brand-black text-4xl leading-tight mb-6">What to Bring</h2>
+          <ul class="space-y-3 text-gray-600">
+            <li class="flex gap-3 items-start">
+              <span class="text-brand-mint-dark font-bold mt-0.5">—</span>
+              <span>Shorts or brief-cut bottoms (bare skin grips the pole)</span>
+            </li>
+            <li class="flex gap-3 items-start">
+              <span class="text-brand-mint-dark font-bold mt-0.5">—</span>
+              <span>Sports bra or fitted tank top</span>
+            </li>
+            <li class="flex gap-3 items-start">
+              <span class="text-brand-mint-dark font-bold mt-0.5">—</span>
+              <span>No lotion on your skin the day of class</span>
+            </li>
+            <li class="flex gap-3 items-start">
+              <span class="text-brand-mint-dark font-bold mt-0.5">—</span>
+              <span>Water bottle</span>
+            </li>
+            <li class="flex gap-3 items-start">
+              <span class="text-brand-mint-dark font-bold mt-0.5">—</span>
+              <span>For heels classes: 6-inch platform heels (or borrow from us)</span>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="font-display font-bold text-brand-black text-4xl leading-tight mb-6">Good to Know</h2>
+          <ul class="space-y-3 text-gray-600">
+            <li class="flex gap-3 items-start">
+              <span class="text-brand-mint-dark font-bold mt-0.5">—</span>
+              <span>Classes run approximately 60 minutes</span>
+            </li>
+            <li class="flex gap-3 items-start">
+              <span class="text-brand-mint-dark font-bold mt-0.5">—</span>
+              <span>Cancel at least 4 hours before class to keep your credit</span>
+            </li>
+            <li class="flex gap-3 items-start">
+              <span class="text-brand-mint-dark font-bold mt-0.5">—</span>
+              <span>Drop-in classes: DM us on Instagram to reserve your spot</span>
+            </li>
+            <li class="flex gap-3 items-start">
+              <span class="text-brand-mint-dark font-bold mt-0.5">—</span>
+              <span>Class packs expire 60 days from purchase</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TeamUp booking widget -->
+  <section id="book" class="relative bg-brand-mint overflow-hidden py-20 lg:py-28">
+    <div
+      class="absolute inset-0 opacity-20"
+      style="background-image: url('/images/brand/bg-texture.jpg'); background-size: cover; background-position: center;"
+    ></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-display font-bold text-brand-black text-4xl lg:text-5xl leading-none mb-4">Book a Class</h2>
+      <p class="text-gray-700 text-lg mb-10">Reserve your spot in the schedule below.</p>
+
+      {teamupEmbedUrl === "TEAMUP_EMBED_URL_PLACEHOLDER" ? (
+        <div class="bg-brand-black border border-gray-800 rounded-xl p-12 text-center">
+          <p class="text-gray-400 text-sm font-medium mb-2">TeamUp booking widget coming soon.</p>
+          <p class="text-gray-600 text-xs">
+            To book: DM us on Instagram{" "}
+            <a href="https://instagram.com/vixen_pole_fitness_" class="text-brand-mint hover:underline" target="_blank" rel="noopener noreferrer">
+              @vixen_pole_fitness_
+            </a>
+          </p>
+        </div>
+      ) : (
+        <div class="rounded-xl overflow-hidden shadow-lg border border-gray-200">
+          <iframe
+            src={teamupEmbedUrl}
+            width="100%"
+            height="600"
+            style="border:0;"
+            loading="lazy"
+            title="Vixen Pole Fitness class schedule and booking"
+          ></iframe>
+        </div>
+      )}
+    </div>
+  </section>
+</BaseLayout>

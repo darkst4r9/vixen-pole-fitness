@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { banner } from "../data/content.ts";
+import { instructors as allInstructors } from "../data/instructors.ts";
 
 const featuredClasses = [
   {
@@ -17,20 +18,7 @@ const featuredClasses = [
   },
 ];
 
-const instructors = [
-  {
-    initials: "L",
-    name: "Lexi",
-    role: "Co-Owner & Lead Instructor",
-    bio: "6 years of teaching, all levels and heels.",
-  },
-  {
-    initials: "S",
-    name: "Sarah",
-    role: "Co-Owner & Instructor",
-    bio: "Dance background, bringing artistry to every class.",
-  },
-];
+const instructors = allInstructors.filter((i) => i.isOwner);
 
 const marqueeItems = [
   "Beginner Classes",
@@ -200,18 +188,19 @@ const marqueeItems = [
       </h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
         {instructors.map((instructor) => (
-          <div class="relative bg-gray-950 border border-gray-800 rounded-xl overflow-hidden aspect-[4/3] flex items-end p-8">
-            <!-- Decorative large letterform -->
-            <div class="absolute top-6 right-6 select-none pointer-events-none overflow-hidden">
-              <span class="font-display font-bold text-[8rem] leading-none text-white opacity-[0.04]">
-                {instructor.initials}
-              </span>
-            </div>
-            <div class="relative z-10">
-              <div class="h-px bg-brand-mint w-8 mb-5"></div>
+          <div class="relative rounded-xl overflow-hidden aspect-[3/4] md:aspect-[4/3] flex items-end">
+            <img
+              src={instructor.photo}
+              alt={instructor.name}
+              class="absolute inset-0 w-full h-full object-cover"
+              style={`object-position: ${instructor.photoPosition}`}
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent"></div>
+            <div class="relative z-10 p-8">
+              <div class="h-px bg-brand-mint w-8 mb-4"></div>
               <h3 class="font-display font-bold text-brand-white text-2xl mb-1">{instructor.name}</h3>
               <p class="text-brand-mint text-xs font-semibold uppercase tracking-wider mb-3">{instructor.role}</p>
-              <p class="text-gray-400 leading-relaxed text-sm">{instructor.bio}</p>
+              <p class="text-gray-300 leading-relaxed text-sm">{instructor.bio}</p>
             </div>
           </div>
         ))}

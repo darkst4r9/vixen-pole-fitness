@@ -28,6 +28,28 @@ html {
   font-family: var(--font-sans);
 }
 
+/* Instructor bio dialog */
+dialog.instructor-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  background: transparent;
+  border: none;
+  padding: 0;
+  max-width: min(640px, 90vw);
+  max-height: 90vh;
+  width: 100%;
+  border-radius: 0.75rem;
+  overflow-y: auto;
+}
+
+dialog.instructor-modal::backdrop {
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(4px);
+}
+
 /* Mobile hamburger icon swap — :has() reaches the label even though it precedes the checkbox in DOM order */
 nav:has(#mobile-menu-toggle:checked) .menu-open-icon {
   display: none;

@@ -1,0 +1,186 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { instructors } from "../data/instructors.ts";
+
+const owners = instructors.filter((i) => i.isOwner);
+const team = instructors.filter((i) => !i.isOwner);
+---
+
+<BaseLayout
+  title="Instructors | Vixen Pole Fitness"
+  description="Meet the instructors at Vixen Pole Fitness in Murrieta, CA. 8 experienced pole fitness instructors across all levels — beginner, heels, choreography, and more."
+>
+  <!-- Hero -->
+  <section class="relative bg-brand-black overflow-hidden">
+    <div
+      class="absolute inset-0 opacity-[0.12]"
+      style="background-image: url('/images/brand/bg-texture.jpg'); background-size: cover; background-position: center;"
+    ></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+      <p class="text-brand-mint text-xs font-semibold uppercase tracking-[0.2em] mb-6">The Team</p>
+      <h1 class="font-display font-bold text-brand-white leading-none mb-6 text-[clamp(3rem,8vw,6rem)]">
+        Your<br>Instructors
+      </h1>
+      <p class="text-gray-400 text-lg leading-relaxed max-w-xl">
+        Eight instructors. Eight different stories. One shared belief — that pole fitness is for every body.
+      </p>
+    </div>
+  </section>
+
+  <!-- Co-owners — featured photo cards -->
+  <section class="bg-brand-black py-20 lg:py-24 border-t border-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-gray-500 text-xs font-bold uppercase tracking-[0.2em] mb-10">Co-Owners</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {owners.map((instructor) => (
+          <button
+            onclick={`document.getElementById('modal-${instructor.name.toLowerCase()}').showModal()`}
+            class="group relative rounded-xl overflow-hidden aspect-[3/4] flex items-end text-left w-full cursor-pointer"
+            aria-label={`Read ${instructor.name}'s bio`}
+          >
+            <img
+              src={instructor.photo}
+              alt={instructor.name}
+              class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              style={`object-position: ${instructor.photoPosition}`}
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent"></div>
+            <div class="relative z-10 p-8 w-full">
+              <div class="h-px bg-brand-mint w-8 mb-5 group-hover:w-16 transition-all duration-300"></div>
+              <h2 class="font-display font-bold text-brand-white text-3xl mb-1">{instructor.name}</h2>
+              <p class="text-brand-mint text-xs font-bold uppercase tracking-wider mb-3">{instructor.role}</p>
+              <p class="text-gray-400 text-xs mb-5">{instructor.experience}</p>
+              <div class="flex flex-wrap gap-2 mb-5">
+                {instructor.specialty.map((s) => (
+                  <span class="text-xs font-semibold uppercase tracking-wide text-brand-black bg-brand-mint px-3 py-1 rounded-full">
+                    {s}
+                  </span>
+                ))}
+              </div>
+              <span class="text-xs font-semibold text-gray-400 group-hover:text-brand-mint transition-colors">
+                Read bio →
+              </span>
+            </div>
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Full team — portrait cards -->
+  <section class="bg-brand-black py-16 lg:py-20 border-t border-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-gray-500 text-xs font-bold uppercase tracking-[0.2em] mb-10">The Full Team</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {team.map((instructor) => (
+          <button
+            onclick={`document.getElementById('modal-${instructor.name.toLowerCase()}').showModal()`}
+            class="group border border-gray-800 rounded-xl overflow-hidden hover:border-brand-mint transition-colors duration-200 text-left cursor-pointer w-full"
+            aria-label={`Read ${instructor.name}'s bio`}
+          >
+            <div class="aspect-[3/4] overflow-hidden bg-gray-900">
+              <img
+                src={instructor.photo}
+                alt={instructor.name}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                style={`object-position: ${instructor.photoPosition}`}
+              />
+            </div>
+            <div class="p-6">
+              <div class="h-px bg-brand-mint w-6 mb-4 group-hover:w-12 transition-all duration-300"></div>
+              <h3 class="font-bold text-brand-white text-xl mb-0.5">{instructor.name}</h3>
+              <p class="text-brand-mint text-xs font-bold uppercase tracking-wider mb-1">{instructor.experience}</p>
+              <p class="text-gray-500 text-xs mb-4">{instructor.role}</p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                {instructor.specialty.map((s) => (
+                  <span class="text-xs font-semibold text-gray-300 border border-gray-700 px-3 py-1 rounded-full">
+                    {s}
+                  </span>
+                ))}
+              </div>
+              <span class="text-xs font-semibold text-gray-500 group-hover:text-brand-mint transition-colors">
+                Read bio →
+              </span>
+            </div>
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Join CTA -->
+  <section class="bg-brand-black border-t border-gray-900 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-gray-500 text-sm">
+        Interested in teaching at Vixen?{" "}
+        <a href="/contact" class="text-brand-mint hover:underline font-medium">Get in touch.</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- Bio dialogs — one per instructor -->
+  {instructors.map((instructor) => (
+    <dialog
+      id={`modal-${instructor.name.toLowerCase()}`}
+      class="instructor-modal"
+    >
+      <div class="bg-gray-950 border border-gray-800 rounded-xl overflow-hidden">
+        <!-- Photo + close button -->
+        <div class="relative aspect-[4/3]">
+          <img
+            src={instructor.photo}
+            alt={instructor.name}
+            class="w-full h-full object-cover"
+            style={`object-position: ${instructor.photoPosition}`}
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+          <!-- Close -->
+          <button
+            onclick={`document.getElementById('modal-${instructor.name.toLowerCase()}').close()`}
+            class="absolute top-4 right-4 w-8 h-8 rounded-full bg-black/60 text-brand-white flex items-center justify-center text-lg leading-none hover:bg-black transition-colors"
+            aria-label="Close"
+          >
+            ×
+          </button>
+          <!-- Name overlay -->
+          <div class="absolute bottom-0 left-0 p-6">
+            <div class="h-px bg-brand-mint w-8 mb-3"></div>
+            <h3 class="font-display font-bold text-brand-white text-2xl mb-0.5">{instructor.name}</h3>
+            <p class="text-brand-mint text-xs font-bold uppercase tracking-wider">{instructor.role}</p>
+          </div>
+        </div>
+        <!-- Bio + details -->
+        <div class="p-6">
+          <p class="text-gray-300 leading-relaxed mb-6">{instructor.bio}</p>
+          <div class="flex flex-wrap gap-2 mb-5">
+            {instructor.specialty.map((s) => (
+              <span class="text-xs font-semibold uppercase tracking-wide text-brand-black bg-brand-mint px-3 py-1 rounded-full">
+                {s}
+              </span>
+            ))}
+          </div>
+          <a
+            href={`https://instagram.com/${instructor.instagram}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1.5 text-sm text-gray-400 hover:text-brand-mint transition-colors"
+          >
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+            @{instructor.instagram}
+          </a>
+        </div>
+      </div>
+    </dialog>
+  ))}
+
+  <!-- Close dialog on backdrop click -->
+  <script>
+    document.querySelectorAll("dialog.instructor-modal").forEach((dialog) => {
+      dialog.addEventListener("click", (e) => {
+        if (e.target === dialog) dialog.close();
+      });
+    });
+  </script>
+</BaseLayout>

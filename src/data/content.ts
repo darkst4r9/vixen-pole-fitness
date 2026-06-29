@@ -7,6 +7,10 @@ export const banner = {
 
 export const formspreeEndpoint = "FORMSPREE_ENDPOINT_PLACEHOLDER";
 
+// Replace with your TeamUp booking widget URL.
+// In TeamUp: Booking Pages > your page > Embed > copy the iframe src URL.
+export const teamupEmbedUrl = "TEAMUP_EMBED_URL_PLACEHOLDER";
+
 export const pricing = {
   unlimitedMonthly: 229,
   eightClassPack: 185,
