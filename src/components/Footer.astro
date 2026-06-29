@@ -1,0 +1,88 @@
+---
+const navLinks = [
+  { href: "/", label: "Home" },
+  { href: "/classes", label: "Classes" },
+  { href: "/pricing", label: "Pricing" },
+  { href: "/instructors", label: "Instructors" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
+];
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-brand-black text-brand-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+
+      <!-- Brand column -->
+      <div class="flex flex-col gap-4">
+        <a href="/" class="flex items-center gap-3">
+          <img
+            src="/images/brand/logo.png"
+            alt="Vixen Pole Fitness logo mark"
+            class="h-10 w-auto invert"
+          />
+          <span class="font-semibold text-lg leading-tight">
+            Vixen Pole Fitness
+          </span>
+        </a>
+        <p class="text-gray-400 text-sm leading-relaxed">
+          A welcoming, non-judgmental pole fitness studio in Murrieta, CA.
+          All levels welcome.
+        </p>
+      </div>
+
+      <!-- Nav links column -->
+      <div>
+        <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">
+          Navigate
+        </h3>
+        <ul class="space-y-2">
+          {navLinks.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class="text-sm text-gray-300 hover:text-brand-mint transition-colors"
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Contact column -->
+      <div>
+        <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">
+          Contact
+        </h3>
+        <address class="not-italic text-sm text-gray-300 space-y-2">
+          <p>24831 Jefferson Ave Ste. 104<br />Murrieta, CA 92562</p>
+          <p>
+            <a
+              href="mailto:VXN.polefitness@gmail.com"
+              class="hover:text-brand-mint transition-colors"
+            >
+              VXN.polefitness@gmail.com
+            </a>
+          </p>
+          <p>
+            <a
+              href="https://instagram.com/vixen_pole_fitness_"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hover:text-brand-mint transition-colors"
+            >
+              @vixen_pole_fitness_
+            </a>
+          </p>
+        </address>
+      </div>
+    </div>
+
+    <div class="mt-10 pt-6 border-t border-gray-700 text-center text-xs text-gray-500">
+      &copy; {currentYear} Vixen Pole Fitness. All rights reserved.
+    </div>
+  </div>
+</footer>
