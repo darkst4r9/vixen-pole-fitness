@@ -12,7 +12,6 @@ single data file so updates require only a file edit and a git push.
 **Hosting:** Vercel (free tier)  
 **Booking:** TeamUp (existing, embedded widget — no platform change)  
 **Contact form:** Formspree (free tier)  
-**Newsletter:** Mailchimp (free tier, embedded form endpoint)  
 **Analytics:** Google Analytics 4  
 **Domain:** vixenpolefitness.com (existing; DNS cutover from Wix to Vercel at launch)  
 **GitHub repo:** https://github.com/darkst4r9/vixen-pole-fitness  
@@ -29,7 +28,7 @@ single data file so updates require only a file edit and a git push.
 | Pricing | Pricing tiers, pack options, cancellation policy |
 | Instructors | Full roster with bio, specialty, photo, Instagram link |
 | About | Studio story, values, co-owner intro, studio photos |
-| Contact | Contact form, address, map embed, social links, newsletter signup |
+| Contact | Contact form, address, map embed, social links |
 
 ---
 
@@ -79,10 +78,6 @@ local studio. No server-side code needed.
 
 Setup: create a free Formspree account, create a form, copy the endpoint URL into
 `src/data/content.ts` or an environment variable.
-
-### Mailchimp (newsletter)
-Mailchimp's embedded form action URL is used directly in the newsletter signup form.
-No API key or server function needed. Free up to 500 contacts.
 
 ### Google Analytics 4
 GA4 script added to the Astro base layout via `<script>` tag. Measurement ID stored
@@ -173,12 +168,10 @@ Acceptance criteria:
 - GA4 tracking confirmed (real-time view shows a pageview)
 - Lighthouse scores: Performance 90+, Accessibility 100, Best Practices 100, SEO 100
 
-### Phase 5: Newsletter and QA Polish
-Wire Mailchimp newsletter signup on Home and Contact pages. Full cross-browser and
-responsive QA pass.
+### Phase 5: QA Polish
+Full cross-browser and responsive QA pass.
 
 Acceptance criteria:
-- Newsletter signup submits to Mailchimp list (confirmed in Mailchimp dashboard)
 - Site renders correctly in Chrome, Firefox, Safari, and mobile Safari
 - No broken links or missing images
 - All Lighthouse targets met across all pages
