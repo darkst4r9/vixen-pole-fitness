@@ -44,7 +44,7 @@ function getInstructorImage(photoPath: string) {
         {owners.map((instructor) => (
           <button
             onclick={`document.getElementById('modal-${instructor.name.toLowerCase()}').showModal()`}
-            class="group relative rounded-xl overflow-hidden aspect-[3/4] flex items-end text-left w-full cursor-pointer"
+            class="group relative rounded-xl overflow-hidden aspect-[3/4] md:aspect-[4/3] flex items-end text-left w-full cursor-pointer"
           >
             <Image
               src={getInstructorImage(instructor.photo)!}

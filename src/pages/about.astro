@@ -1,8 +1,21 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro:assets";
 import { instructors } from "../data/instructors.ts";
 
 const owners = instructors.filter((i) => i.isOwner);
+
+const instructorImages = import.meta.glob<{ default: ImageMetadata }>(
+  "../assets/images/instructors/*",
+  { eager: true }
+);
+
+function getInstructorImage(photoPath: string) {
+  const filename = photoPath.split("/").pop();
+  const match = Object.entries(instructorImages).find(([path]) => path.endsWith("/" + filename));
+  return match ? match[1].default : undefined;
+}
 
 const values = [
   {
@@ -80,9 +93,12 @@ const values = [
             href="/instructors"
             class="group relative rounded-xl overflow-hidden aspect-[3/4] md:aspect-[4/3] flex items-end"
           >
-            <img
-              src={owner.photo}
+            <Image
+              src={getInstructorImage(owner.photo)!}
               alt={owner.name}
+              format="webp"
+              quality={80}
+              loading="lazy"
               class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               style={`object-position: ${owner.photoPosition}`}
             />
