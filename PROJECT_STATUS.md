@@ -533,3 +533,37 @@ Lighthouse audits against all 6 pages (not just read code):
 QA VERDICT: PASS on all Phase 4 acceptance criteria. No ux-reviewer needed for this
 phase (not a visual-design phase per the CLAUDE.md reviewer table). architect to run
 the Phase 4 gate.
+
+---
+
+### 2026-07-02T12:41:00Z frontend-engineer
+- Phase: Phase 4: SEO (targeted LCP fix, not a new phase)
+- Completed:
+  - Copied `public/images/gallery/gallery-6.jpeg` into `src/assets/images/gallery/gallery-6.jpeg` so Astro's build-time Sharp pipeline can process it. Original left in `public/` because `BaseLayout.astro` (OG image default) and `about.astro` (gallery img) still reference the public path as a URL string.
+  - Replaced the bare `<img src="/images/gallery/gallery-6.jpeg">` in `src/pages/index.astro` hero (lines 46-51 pre-edit) with Astro's `<Image>` component from `astro:assets`, importing `heroImage` from the new `src/assets` path. Passed `format="webp"`, `quality={80}`, `loading="eager"`, and `fetchpriority="high"`. All original attributes (`alt=""`, `aria-hidden="true"`, Tailwind classes) preserved unchanged.
+  - Committed as `233ce1e`.
+- Verified by me:
+  - `npm run build` zero errors, all 6 pages generated.
+  - Build output confirms: `gallery-6.DYZ061NA_23Yxu8.webp` generated at 53kB (before: 257kB, 79% reduction).
+  - `dist/index.html` hero `<img>` tag: `src="/_astro/gallery-6.DYZ061NA_23Yxu8.webp"`, `loading="eager"`, `fetchpriority="high"`, no `loading="lazy"`, `aria-hidden="true"`, all Tailwind classes intact.
+  - No other pages broken: `about.astro` and `BaseLayout.astro` continue to reference the original public path, which still exists.
+- Open issues:
+  - Production Lighthouse re-run needed to confirm LCP improvement (cannot run against production from this environment; requires push to Vercel then Lighthouse against live URL).
+  - Sitewide image migration (other pages still serve JPEG via public/) is a separate undertaking, not in scope here.
+- Recommended next: qa-test-engineer
+
+---
+
+### 2026-07-02T13:00:00Z frontend-engineer
+- Phase: Phase 4: SEO (mobile performance fixes, not a new phase)
+- Completed:
+  - Fix 1: Copied `public/images/gallery/photo-extra.jpg` into `src/assets/images/gallery/photo-extra.jpg`. Confirmed only `index.astro` referenced the public path (no other pages at risk). Imported as `studioPhoto` in `index.astro` and replaced the plain `<img>` in the "Why Vixen" value-prop section with Astro's `<Image>` component: `format="webp"`, `quality={80}`, all original `alt` and Tailwind classes (`absolute inset-0 w-full h-full object-cover`) preserved. No `fetchpriority` or eager loading added: this image is well below the fold and the default `loading="lazy"` is correct.
+  - Fix 2: Replaced the synchronous `<link rel="stylesheet">` Google Fonts request in `src/layouts/BaseLayout.astro` with the non-blocking preload/onload pattern. Both `preconnect` links unchanged. Added `<noscript>` fallback for JS-disabled environments. Affects all 6 pages (shared layout), expected.
+- Verified by me:
+  - `npm run build` zero errors, all 6 pages generated.
+  - Build output: `photo-extra.DLJ21FDQ_2qu1OL.webp` generated at 305kB (before: 901kB, 66% reduction).
+  - `dist/index.html` value-prop `<img>`: `src="/_astro/photo-extra.DLJ21FDQ_2qu1OL.webp"`, `loading="lazy"`, `decoding="async"`, correct alt and Tailwind classes.
+  - `dist/index.html` head: `rel="preload" as="style"` with `onload` swap and `<noscript>` fallback present. No blocking `<link rel="stylesheet">` for Google Fonts.
+- Open issues:
+  - Production PageSpeed Insights re-run needed to confirm the two fixes land the mobile score at 90+. Cannot run PSI against local build from this environment.
+- Recommended next: qa-test-engineer

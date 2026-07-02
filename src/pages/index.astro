@@ -4,6 +4,7 @@ import { Image } from "astro:assets";
 import { banner } from "../data/content.ts";
 import { instructors as allInstructors } from "../data/instructors.ts";
 import heroImage from "../assets/images/gallery/gallery-6.jpeg";
+import studioPhoto from "../assets/images/gallery/photo-extra.jpg";
 
 const featuredClasses = [
   {
@@ -88,9 +89,11 @@ const instructors = allInstructors.filter((i) => i.isOwner);
     <div class="grid grid-cols-1 lg:grid-cols-2 min-h-[60vh]">
       <!-- Left: full-bleed studio photo -->
       <div class="relative bg-brand-black min-h-72 lg:min-h-0 overflow-hidden">
-        <img
-          src="/images/gallery/photo-extra.jpg"
+        <Image
+          src={studioPhoto}
           alt="Vixen Pole Fitness studio"
+          format="webp"
+          quality={80}
           class="absolute inset-0 w-full h-full object-cover"
         />
         <div class="absolute inset-0 bg-black/20"></div>
