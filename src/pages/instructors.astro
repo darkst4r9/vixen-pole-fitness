@@ -1,9 +1,22 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro:assets";
 import { instructors } from "../data/instructors.ts";
 
 const owners = instructors.filter((i) => i.isOwner);
 const team = instructors.filter((i) => !i.isOwner);
+
+const instructorImages = import.meta.glob<{ default: ImageMetadata }>(
+  "../assets/images/instructors/*",
+  { eager: true }
+);
+
+function getInstructorImage(photoPath: string) {
+  const filename = photoPath.split("/").pop();
+  const match = Object.entries(instructorImages).find(([path]) => path.endsWith("/" + filename));
+  return match ? match[1].default : undefined;
+}
 ---
 
 <BaseLayout
@@ -33,9 +46,12 @@ const team = instructors.filter((i) => !i.isOwner);
             onclick={`document.getElementById('modal-${instructor.name.toLowerCase()}').showModal()`}
             class="group relative rounded-xl overflow-hidden aspect-[3/4] flex items-end text-left w-full cursor-pointer"
           >
-            <img
-              src={instructor.photo}
+            <Image
+              src={getInstructorImage(instructor.photo)!}
               alt={instructor.name}
+              format="webp"
+              quality={80}
+              loading="lazy"
               class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               style={`object-position: ${instructor.photoPosition}`}
             />
@@ -73,9 +89,12 @@ const team = instructors.filter((i) => !i.isOwner);
             class="group border border-gray-800 rounded-xl overflow-hidden hover:border-brand-mint transition-colors duration-200 text-left cursor-pointer w-full"
           >
             <div class="aspect-[3/4] overflow-hidden bg-gray-900">
-              <img
-                src={instructor.photo}
+              <Image
+                src={getInstructorImage(instructor.photo)!}
                 alt={instructor.name}
+                format="webp"
+                quality={80}
+                loading="lazy"
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 style={`object-position: ${instructor.photoPosition}`}
               />
@@ -123,9 +142,12 @@ const team = instructors.filter((i) => !i.isOwner);
       <div class="bg-gray-950 border border-gray-800 rounded-xl overflow-hidden">
         <!-- Photo + close button -->
         <div class="relative aspect-[4/3]">
-          <img
-            src={instructor.photo}
+          <Image
+            src={getInstructorImage(instructor.photo)!}
             alt={instructor.name}
+            format="webp"
+            quality={80}
+            loading="lazy"
             class="w-full h-full object-cover"
             style={`object-position: ${instructor.photoPosition}`}
           />
