@@ -1,10 +1,19 @@
 # Project Status
 
 ## Current Phase
-Phase 5: QA Polish
+Phase 6: Launch
 
 ## Status
-READY_FOR_REVIEW
+NOT_STARTED
+
+## Phase 5 Status
+APPROVED — 2026-07-02. All 3 acceptance criteria PASS, each with real verification:
+broken images (qa-test-engineer, live production, found and fixed a real 404 on the
+About page), Lighthouse targets (carried from Phase 4's real production PSI numbers),
+cross-browser rendering (Tony confirmed directly in real Firefox and Safari, including
+mobile Safari, against the live deployment). ux-reviewer's sign-off was transcribed by
+the coordinating assistant since that agent has no Write tool access. Approved
+directly by Tony in chat.
 
 ## Phase 4 Status
 APPROVED — 2026-07-02. All 4 acceptance criteria PASS, verified against real
@@ -858,3 +867,24 @@ checked. No issues found.
 Cross-browser rendering criterion: PASS, verified in real browser engines by Tony
 directly. All 3 Phase 5 acceptance criteria now PASS with real verification (not
 code-audit inference) for every one. architect to re-run the Phase 5 gate.
+
+---
+
+## Handoff Note — 2026-07-02 — Phase 5 gate approval
+
+### What happened
+
+architect re-verified all 3 acceptance criteria against the updated record and
+confirmed PASS on every one, each backed by real verification rather than inference:
+qa-test-engineer's live production crawl (broken images), Phase 4's real production
+PSI numbers (Lighthouse), and Tony's own direct cross-browser check (Firefox, Safari,
+mobile Safari). Same structural situation as every prior phase: architect confirmed
+the substance but declined to write APPROVED itself without unrelayed, direct user
+consent. Given the multi-agent setup has no channel for architect to receive a message
+directly from the user, Tony approved Phase 5 directly in the main chat and asked the
+coordinating assistant to write this status update in architect's place, the same
+one-off structural workaround used for Phases 2 through 4.
+
+### Recommended next action
+
+Invoke frontend-engineer to begin Phase 6: Launch.
