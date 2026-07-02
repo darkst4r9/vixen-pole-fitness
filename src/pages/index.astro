@@ -1,7 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
 import { banner } from "../data/content.ts";
 import { instructors as allInstructors } from "../data/instructors.ts";
+import heroImage from "../assets/images/gallery/gallery-6.jpeg";
 
 const featuredClasses = [
   {
@@ -43,10 +45,14 @@ const instructors = allInstructors.filter((i) => i.isOwner);
   <section class="relative bg-brand-black overflow-hidden min-h-[65vh] flex items-end">
     <!-- Background photo anchored right, fading left -->
     <div class="absolute inset-0">
-      <img
-        src="/images/gallery/gallery-6.jpeg"
+      <Image
+        src={heroImage}
         alt=""
         aria-hidden="true"
+        format="webp"
+        quality={80}
+        loading="eager"
+        fetchpriority="high"
         class="w-full h-full object-contain object-right opacity-25"
       />
       <div class="absolute inset-0" style="background: linear-gradient(to right, #1A1A1A 50%, transparent 90%)"></div>
