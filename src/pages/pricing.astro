@@ -66,6 +66,7 @@ const tiers = [
   <!-- Pricing tiers -->
   <section class="bg-brand-black py-20 lg:py-28 border-t border-gray-900">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="sr-only">Pricing Tiers</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {tiers.map((tier) => (
           <div class={`relative rounded-xl p-8 flex flex-col border transition-colors duration-200 ${
@@ -88,7 +89,7 @@ const tiers = [
                 <span class={`font-display font-bold text-5xl leading-none ${tier.highlight ? "text-brand-black" : "text-brand-white"}`}>
                   ${tier.price}
                 </span>
-                <span class={`text-sm mb-1 ${tier.highlight ? "text-gray-700" : "text-gray-500"}`}>
+                <span class={`text-sm mb-1 ${tier.highlight ? "text-gray-700" : "text-gray-400"}`}>
                   {tier.unit}
                 </span>
               </div>
@@ -131,7 +132,7 @@ const tiers = [
             Cancel at least <strong>4 hours before your class</strong> to retain your class credit. Late cancellations and no-shows forfeit the class credit.
           </p>
           <p class="text-gray-600 leading-relaxed">
-            To cancel: log in to your TeamUp account or DM us on Instagram at least 4 hours in advance.
+            To cancel: log in to your GoTeamUp account or DM us on Instagram at least 4 hours in advance.
           </p>
         </div>
         <div>

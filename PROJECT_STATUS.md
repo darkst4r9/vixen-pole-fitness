@@ -441,6 +441,32 @@ None.
 
 ---
 
+### 2026-07-02T12:24:00Z frontend-engineer
+- Phase: Phase 4: SEO
+- Completed:
+  - Fix 1: Wrapped `<slot />` in `<main>` in `src/layouts/BaseLayout.astro`. One change covers all 6 pages.
+  - Fix 2: Added `--color-brand-mint-deep: #256b66` to the `@theme` block in `src/styles/global.css`, producing the `text-brand-mint-deep` utility. Contrast: 6.22:1 on white, 5.71:1 on brand-gray; passes WCAG AA for small text on both light backgrounds.
+  - Fix 3 (index.astro): "WHY VIXEN" eyebrow label, numbered 01/02/03 digits, and "Learn more ->" spans in featured-class cards changed from `text-brand-mint-dark` to `text-brand-mint-deep` (white-card background). "View All ->" link changed from `text-gray-500` to `text-gray-600` (brand-gray background).
+  - Fix 3 (Footer.astro): Copyright line changed from `text-gray-500` to `text-gray-400` (brand-black background). Covers all 6 pages since Footer is shared.
+  - Fix 3 (about.astro): "xoxo, Lexi & Sarah, co-owners" changed from `text-gray-500` to `text-gray-600` (brand-gray background). ADDRESS / EMAIL / INSTAGRAM eyebrow labels in Find Us section changed from `text-gray-400` to `text-gray-500` (brand-white background).
+  - Fix 3 (contact.astro): "Opens your email client." changed from `text-gray-400` to `text-gray-500` (inside white card). ADDRESS / EMAIL / INSTAGRAM eyebrow labels in contact-info column changed from `text-gray-400` to `text-gray-600` (brand-gray section background).
+  - Fix 3 (classes.astro): "WHAT TO EXPECT" eyebrow label changed from `text-gray-500` to `text-gray-400` (brand-black background).
+  - Fix 3 (instructors.astro): "CO-OWNERS" and "THE FULL TEAM" eyebrow labels, "Instructor" role labels, "Read bio ->" spans, and "Interested in teaching at Vixen?" CTA text all changed from `text-gray-500` to `text-gray-400` (brand-black background throughout).
+  - Fix 3 (pricing.astro): Unit label on non-highlighted tier cards changed from `text-gray-500` to `text-gray-400` (bg-gray-950 cards). Highlighted "Most Popular" card unit label (`text-gray-700` on mint background) left untouched.
+  - Fix 4 (pricing.astro): Added `<h2 class="sr-only">Pricing Tiers</h2>` immediately before the tier cards grid, bridging the h1-to-h3 heading gap without any visual change.
+  - Fix 5 (instructors.astro): Removed `aria-label` attribute from all owner-card buttons and all full-team-card buttons. Visible text content (name, role, experience, specialty pills, "Read bio ->") now serves as the accessible name, matching Lighthouse's label-content-name-mismatch criterion.
+- Verified by me:
+  - `npm run build` completed with zero errors, all 6 pages generated
+  - `text-brand-mint-deep` utility class is a valid Tailwind v4 token derived from the `@theme` block (same pattern as all other brand tokens in the project)
+  - `sr-only` is a built-in Tailwind utility, no config change needed
+  - Did not touch any `text-gray-500`, `text-gray-400`, or `text-brand-mint-dark` usages that sit on dark backgrounds where they already pass contrast (e.g., hero subheads, dark-card body text, decorative dash markers in classes.astro)
+- Open issues:
+  - GA4 still excluded per Tony's request; tracked as GitHub issue #7
+  - Lighthouse score verification not run locally; deferred to qa-test-engineer
+- Recommended next: qa-test-engineer
+
+---
+
 ### 2026-07-02T12:05:00Z frontend-engineer
 - Phase: Phase 4: SEO
 - Completed:

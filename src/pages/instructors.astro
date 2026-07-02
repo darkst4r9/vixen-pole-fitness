@@ -26,13 +26,12 @@ const team = instructors.filter((i) => !i.isOwner);
   <!-- Co-owners — featured photo cards -->
   <section class="bg-brand-black py-20 lg:py-24 border-t border-gray-900">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <p class="text-gray-500 text-xs font-bold uppercase tracking-[0.2em] mb-10">Co-Owners</p>
+      <p class="text-gray-400 text-xs font-bold uppercase tracking-[0.2em] mb-10">Co-Owners</p>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         {owners.map((instructor) => (
           <button
             onclick={`document.getElementById('modal-${instructor.name.toLowerCase()}').showModal()`}
             class="group relative rounded-xl overflow-hidden aspect-[3/4] flex items-end text-left w-full cursor-pointer"
-            aria-label={`Read ${instructor.name}'s bio`}
           >
             <img
               src={instructor.photo}
@@ -66,13 +65,12 @@ const team = instructors.filter((i) => !i.isOwner);
   <!-- Full team — portrait cards -->
   <section class="bg-brand-black py-16 lg:py-20 border-t border-gray-900">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <p class="text-gray-500 text-xs font-bold uppercase tracking-[0.2em] mb-10">The Full Team</p>
+      <p class="text-gray-400 text-xs font-bold uppercase tracking-[0.2em] mb-10">The Full Team</p>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {team.map((instructor) => (
           <button
             onclick={`document.getElementById('modal-${instructor.name.toLowerCase()}').showModal()`}
             class="group border border-gray-800 rounded-xl overflow-hidden hover:border-brand-mint transition-colors duration-200 text-left cursor-pointer w-full"
-            aria-label={`Read ${instructor.name}'s bio`}
           >
             <div class="aspect-[3/4] overflow-hidden bg-gray-900">
               <img
@@ -86,7 +84,7 @@ const team = instructors.filter((i) => !i.isOwner);
               <div class="h-px bg-brand-mint w-6 mb-4 group-hover:w-12 transition-all duration-300"></div>
               <h3 class="font-bold text-brand-white text-xl mb-0.5">{instructor.name}</h3>
               <p class="text-brand-mint text-xs font-bold uppercase tracking-wider mb-1">{instructor.experience}</p>
-              <p class="text-gray-500 text-xs mb-4">{instructor.role}</p>
+              <p class="text-gray-400 text-xs mb-4">{instructor.role}</p>
               <div class="flex flex-wrap gap-2 mb-4">
                 {instructor.specialty.map((s) => (
                   <span class="text-xs font-semibold text-gray-300 border border-gray-700 px-3 py-1 rounded-full">
@@ -94,7 +92,7 @@ const team = instructors.filter((i) => !i.isOwner);
                   </span>
                 ))}
               </div>
-              <span class="text-xs font-semibold text-gray-500 group-hover:text-brand-mint transition-colors">
+              <span class="text-xs font-semibold text-gray-400 group-hover:text-brand-mint transition-colors">
                 Read bio →
               </span>
             </div>
@@ -107,7 +105,7 @@ const team = instructors.filter((i) => !i.isOwner);
   <!-- Join CTA -->
   <section class="bg-brand-black border-t border-gray-900 py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <p class="text-gray-500 text-sm">
+      <p class="text-gray-400 text-sm">
         Interested in teaching at Vixen?{" "}
         <a href="/contact" class="text-brand-mint hover:underline font-medium">Get in touch.</a>
       </p>
