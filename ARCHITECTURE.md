@@ -10,8 +10,8 @@ single data file so updates require only a file edit and a git push.
 **Framework:** Astro  
 **Styling:** Tailwind CSS  
 **Hosting:** Vercel (free tier)  
-**Booking:** TeamUp (existing, embedded widget — no platform change)  
-**Contact form:** Formspree (free tier)  
+**Booking:** GoTeamUp (existing, embedded iframe — no platform change)  
+**Contact:** mailto link only, no form, no data capture  
 **Analytics:** Google Analytics 4  
 **Domain:** vixenpolefitness.com (existing; DNS cutover from Wix to Vercel at launch)  
 **GitHub repo:** https://github.com/darkst4r9/vixen-pole-fitness  
@@ -24,7 +24,7 @@ single data file so updates require only a file edit and a git push.
 | Page | Purpose |
 |------|---------|
 | Home | Hero, value prop, active banner (if any), featured classes teaser, instructor teaser, booking CTA |
-| Classes & Schedule | Class type cards, TeamUp booking widget embed |
+| Classes & Schedule | Class type cards, GoTeamUp booking iframe embed |
 | Pricing | Pricing tiers, pack options, cancellation policy |
 | Instructors | Full roster with bio, specialty, photo, Instagram link |
 | About | Studio story, values, co-owner intro, studio photos |
@@ -67,21 +67,28 @@ update; no deployment risk beyond what a normal push carries.
 
 ## Third-Party Integrations
 
-### TeamUp (booking)
-Embedded via TeamUp's iframe widget on the Classes page and as a condensed CTA on Home.
-No API integration. Existing TeamUp account and class data carry over unchanged.
+### GoTeamUp (booking)
+Embedded on the Classes page as a plain iframe pointed at the studio's public GoTeamUp
+booking URL (`goteamupUrl` in `content.ts`) — the page's own layout adapts to the
+iframe's width, so a responsive `w-full` container with breakpoint-scaled heights is
+sufficient without needing GoTeamUp's dashboard-generated JS widget. A condensed
+"Book a Class" CTA links to the same URL from Home and Pricing.
 
-### Formspree (contact form)
-The contact form posts to a Formspree endpoint. Submissions are forwarded to
-VXN.polefitness@gmail.com. Free tier handles 50 submissions/month, sufficient for a
-local studio. No server-side code needed.
+`content.ts` also exports `goteamupWidgetCode`, an escape hatch: if populated with the
+official embed snippet from GoTeamUp's dashboard (Customer Experience > Customer Site >
+View Embed Instructions), the Classes page renders that instead of the plain iframe.
+Empty by default. No API integration either way. Existing GoTeamUp account and class
+data carry over unchanged.
 
-Setup: create a free Formspree account, create a form, copy the endpoint URL into
-`src/data/content.ts` or an environment variable.
+### Contact
+No form, no data capture. The Contact page presents a mailto CTA that opens the
+visitor's email client addressed to VXN.polefitness@gmail.com. No third-party
+service, no server-side code, no submissions to store.
 
 ### Google Analytics 4
-GA4 script added to the Astro base layout via `<script>` tag. Measurement ID stored
-as a Vercel environment variable (`PUBLIC_GA_MEASUREMENT_ID`).
+Deferred, tracked separately (see GA4 GitHub issue). When picked up: GA4 script added
+to the Astro base layout via `<script>` tag, measurement ID stored as a Vercel
+environment variable (`PUBLIC_GA_MEASUREMENT_ID`).
 
 ---
 
@@ -138,35 +145,46 @@ Acceptance criteria:
 - Favicon and logo set
 
 ### Phase 2: Core Static Pages
-Build Home (without booking widget), About, and Contact pages. Wire Formspree contact form.
+Build Home (without booking widget), About, and Contact pages. Contact page uses a
+mailto CTA, no form, no data capture.
 
 Acceptance criteria:
 - Home hero renders with headline, subhead, and primary CTA on mobile and desktop
 - Active banner in `content.ts` renders on Home; inactive banner shows nothing
 - About page reflects co-owner story and studio values
-- Contact form submits to Formspree and triggers email to VXN.polefitness@gmail.com
-- Lighthouse SEO and Accessibility scores of 100 on all three pages
+- Contact page presents a working mailto CTA to VXN.polefitness@gmail.com
+
+Lighthouse SEO/Accessibility verification for these pages is deferred to Phase 4,
+which already scores all pages against the full Lighthouse target set.
 
 ### Phase 3: Classes, Instructors, and Pricing Pages
-Build Classes page with TeamUp widget embed. Build Instructors page from
+Build Classes page with GoTeamUp booking embed. Build Instructors page from
 `src/data/instructors.ts`. Build static Pricing page from `content.ts` pricing object.
 
 Acceptance criteria:
 - All 8 instructors render correctly with photo, bio, specialty, and Instagram link
-- All 6 class types render correctly on the Classes page
-- TeamUp booking widget loads and is functional
+- All 7 class types render correctly on the Classes page
+- GoTeamUp booking iframe loads and is functional
 - Pricing page reflects all tiers and cancellation policy
 - Responsive layout verified on mobile, tablet, and desktop
 
-### Phase 4: SEO and Analytics
-Implement local business schema, all page-level meta tags, sitemap, GA4 connection.
+The class type count was corrected from an original estimate of 6 to 7 after
+cross-checking against the live legacy site: "Heels Classes" and "Heels Choreography"
+are distinct offerings (confirmed via instructor bios, e.g. Reyna teaches heels choreo
+specifically), not one combined class.
+
+### Phase 4: SEO
+Implement local business schema, all page-level meta tags, sitemap.
 
 Acceptance criteria:
 - JSON-LD validates in Google's Rich Results Test
 - All pages have unique meta titles and descriptions
 - Sitemap generates at build and is submitted to Google Search Console
-- GA4 tracking confirmed (real-time view shows a pageview)
 - Lighthouse scores: Performance 90+, Accessibility 100, Best Practices 100, SEO 100
+
+GA4 connection was pulled out of this phase's gate criteria at Tony's request (no
+measurement ID ready yet) and tracked separately; see the GA4 GitHub issue. Nothing
+in this phase depends on it.
 
 ### Phase 5: QA Polish
 Full cross-browser and responsive QA pass.

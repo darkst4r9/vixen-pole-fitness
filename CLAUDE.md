@@ -5,9 +5,9 @@
 - Framework: Astro
 - Styling: Tailwind CSS
 - Hosting: Vercel (auto-deploys on push to main)
-- Contact form: Formspree
+- Contact: mailto link only, no form data capture
 - Newsletter: Mailchimp
-- Booking: TeamUp (embedded widget)
+- Booking: GoTeamUp (embedded iframe)
 - Analytics: Google Analytics 4
 
 ## Content Updates
