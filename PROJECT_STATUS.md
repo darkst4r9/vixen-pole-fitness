@@ -832,3 +832,29 @@ Re-verified both fixes directly against source and production:
 
 UX SIGN-OFF: PASS on both the original Phase 5 polish review and the two fixes from
 commit 7356471. No outstanding UX issues for Phase 5.
+
+---
+
+## Handoff Note — 2026-07-02 — Phase 5 cross-browser verification
+
+### What happened
+
+architect rejected qa-test-engineer's code-audit-only cross-browser verification
+(grepping for vendor prefixes) as insufficient, correctly noting that Safari and
+mobile Safari specifically have real-world rendering quirks a static scan can't catch,
+and that the criterion requires actual run results, not inference from source.
+
+No cloud browser testing service (BrowserStack, LambdaTest, etc.) is configured in
+this environment, and setting one up would require Tony to create an account and
+provide API credentials, which was more overhead than just checking directly.
+
+Tony opened https://vixen-pole-fitness.vercel.app/ himself in real Firefox and Safari
+(including mobile Safari) and confirmed the site renders correctly in all of them —
+layout, fonts, images, nav, and the Classes page's GoTeamUp booking iframe all
+checked. No issues found.
+
+### Recommended next action
+
+Cross-browser rendering criterion: PASS, verified in real browser engines by Tony
+directly. All 3 Phase 5 acceptance criteria now PASS with real verification (not
+code-audit inference) for every one. architect to re-run the Phase 5 gate.
