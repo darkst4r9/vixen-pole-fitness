@@ -6,9 +6,8 @@
 - Styling: Tailwind CSS
 - Hosting: Vercel (auto-deploys on push to main)
 - Contact: mailto link only, no form data capture
-- Newsletter: Mailchimp
 - Booking: GoTeamUp (embedded iframe)
-- Analytics: Google Analytics 4
+- Analytics: Google Analytics 4 (deferred, tracked as GitHub issue #7)
 
 ## Content Updates
 
@@ -24,8 +23,8 @@ to main. Vercel deploys automatically. No CMS, no dashboard.
 | 1: Project Setup and Design System | frontend-engineer | ux-reviewer, qa-test-engineer | architect |
 | 2: Core Static Pages | frontend-engineer | ux-reviewer, qa-test-engineer | architect |
 | 3: Classes, Instructors, and Pricing | frontend-engineer | ux-reviewer, qa-test-engineer | architect |
-| 4: SEO and Analytics | frontend-engineer | qa-test-engineer | architect |
-| 5: Newsletter and QA Polish | frontend-engineer | ux-reviewer, qa-test-engineer | architect |
+| 4: SEO | frontend-engineer | qa-test-engineer | architect |
+| 5: QA Polish | frontend-engineer | ux-reviewer, qa-test-engineer | architect |
 | 6: Launch | frontend-engineer | qa-test-engineer | architect |
 
 ### Gate rules

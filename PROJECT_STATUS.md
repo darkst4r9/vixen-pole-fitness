@@ -654,3 +654,30 @@ architect's place, the same one-off structural workaround used for Phases 2 and 
 ### Recommended next action
 
 Invoke frontend-engineer to begin Phase 5: QA Polish.
+
+---
+
+## Handoff Note — 2026-07-02 — Newsletter/Mailchimp cut from scope
+
+### What changed
+
+CLAUDE.md's phase-ownership table called Phase 5 "Newsletter and QA Polish" and listed
+Mailchimp in the stack summary, but ARCHITECTURE.md's actual Phase 5 acceptance
+criteria only ever covered cross-browser QA — no newsletter criteria existed anywhere.
+"No Mailchimp integration yet" had been carried forward as an open item since Phase 1
+without ever being scoped.
+
+Tony's decision: Mailchimp/newsletter is cut entirely, not deferred like GA4. No
+tracking issue created since it's not being built at all, now or later.
+
+- CLAUDE.md: removed "Newsletter: Mailchimp" from the stack list, renamed Phase 4 and
+  Phase 5 table rows from "SEO and Analytics" / "Newsletter and QA Polish" to "SEO" /
+  "QA Polish" to match ARCHITECTURE.md and reality.
+- ARCHITECTURE.md: no changes needed, it never mentioned newsletter/Mailchimp.
+- Historical "No Mailchimp integration yet" lines in earlier dated handoff notes left
+  untouched as historical snapshots, per this log's append-only convention.
+
+### Recommended next action
+
+Invoke frontend-engineer to begin Phase 5: QA Polish (cross-browser rendering, no
+broken links/images, Lighthouse targets across all pages). No newsletter work in scope.
