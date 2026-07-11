@@ -1,7 +1,7 @@
 ---
 name: frontend-engineer
 description: Builds all Astro pages, Tailwind components, data files, and third-party integrations (TeamUp, Formspree, Mailchimp, GA4) for the Vixen Pole Fitness site rework.
-tools: Read, Write, Edit, Bash
+tools: Read, Write, Edit, Bash, Skill
 model: claude-sonnet-4-6
 ---
 
@@ -27,6 +27,13 @@ Only work on the phase that is currently IN_PROGRESS.
 - Newsletter: Mailchimp embedded form endpoint
 - Booking: TeamUp iframe widget
 - Analytics: GA4 via script tag in base layout, Measurement ID from PUBLIC_GA_MEASUREMENT_ID env var
+
+## Vercel deployment
+
+For deployment/env var questions, consult the `deployments-cicd` and `env-vars` skills (from
+the `vercel` plugin). Once the `vercel` MCP server is live (new session + one-time OAuth — see
+project CLAUDE.md), use it to confirm a push actually deployed successfully rather than
+assuming from the git push alone, especially for Phase 6 custom domain configuration.
 
 ## Content update pattern
 

@@ -9,6 +9,12 @@
 - Booking: GoTeamUp (embedded iframe)
 - Analytics: Google Analytics 4 (deferred, tracked as GitHub issue #7)
 
+## Agent Tooling
+
+- **Playwright MCP** (`.claude/mcp.json`) gives `qa-test-engineer` and `ux-reviewer` real browser access — actual rendered output, form submission, computed styles, and responsive checks at real viewport sizes, not just static HTML/WebFetch reads. Same setup already proven on `temecula-winery-clubs`.
+- **`frontend-design` skill** (enabled globally, `claude-plugins-official`) is available to `ux-reviewer` via the `Skill` tool for genuinely new page types or sections with no existing pattern to extend — not for routine token/pattern reuse.
+- **`vercel` plugin** (enabled globally) gives `frontend-engineer` and `qa-test-engineer` the `deployments-cicd` and `env-vars` skills for Vercel-specific guidance. The plugin's `vercel` MCP server (deployment status, project env vars, logs) is a remote server requiring a fresh Claude Code session to attach and a one-time OAuth authorization on first use — until that's done, agents fall back to the skills alone and should not claim to have verified live deployment state, which matters most for Phase 6 (Launch).
+
 ## Content Updates
 
 Banner announcements and pricing live in `src/data/content.ts`. Edit that file and push
