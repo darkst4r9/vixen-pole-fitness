@@ -1,5 +1,9 @@
 # Vixen Pole Fitness — Project Guide
 
+## Web Research
+
+Never use the WebFetch tool — it has repeatedly returned inaccurate or fabricated page summaries. `curl` the raw page and read/grep the actual text instead. Applies to every agent in this project's roster.
+
 ## Stack
 
 - Framework: Astro

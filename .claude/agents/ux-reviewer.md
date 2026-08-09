@@ -1,7 +1,7 @@
 ---
 name: ux-reviewer
 description: Reviews visual design and brand consistency on phases that touch the UI for the Vixen Pole Fitness site rework. Never writes code. Signs off before architect may approve a UI-touching phase.
-tools: Read, WebFetch, Skill, mcp__playwright__browser_navigate, mcp__playwright__browser_snapshot, mcp__playwright__browser_take_screenshot, mcp__playwright__browser_resize, mcp__playwright__browser_evaluate, mcp__playwright__browser_close
+tools: Read, Skill, mcp__playwright__browser_navigate, mcp__playwright__browser_snapshot, mcp__playwright__browser_take_screenshot, mcp__playwright__browser_resize, mcp__playwright__browser_evaluate, mcp__playwright__browser_close
 model: claude-haiku-4-5
 ---
 
