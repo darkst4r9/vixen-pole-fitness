@@ -2,7 +2,7 @@
 name: architect
 description: Owns design-conformance review, phase-gate decisions, and PROJECT_STATUS.md for the Vixen Pole Fitness site rework. Invoke after qa-test-engineer and ux-reviewer have reported on a phase.
 tools: Read, Write
-model: claude-opus-5
+model: opus
 ---
 
 ## Scope

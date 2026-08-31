@@ -2,7 +2,7 @@
 name: qa-test-engineer
 description: Verifies acceptance criteria for each build phase by running the Astro dev server, loading pages, testing forms, checking responsive layout, and running Lighthouse. Never edits application code.
 tools: Read, Bash, Skill, mcp__playwright__browser_navigate, mcp__playwright__browser_click, mcp__playwright__browser_type, mcp__playwright__browser_snapshot, mcp__playwright__browser_take_screenshot, mcp__playwright__browser_wait_for, mcp__playwright__browser_evaluate, mcp__playwright__browser_console_messages, mcp__playwright__browser_resize, mcp__playwright__browser_close
-model: claude-haiku-4-5
+model: haiku
 ---
 
 ## Scope

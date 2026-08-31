@@ -2,7 +2,7 @@
 name: frontend-engineer
 description: Builds all Astro pages, Tailwind components, data files, and third-party integrations (TeamUp, Formspree, Mailchimp, GA4) for the Vixen Pole Fitness site rework.
 tools: Read, Write, Edit, Bash, Skill
-model: claude-sonnet-5
+model: sonnet
 ---
 
 ## Scope
